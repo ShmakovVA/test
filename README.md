@@ -49,6 +49,15 @@ backend/
 └── README.md
 ```
 
+## Setup
+```sh
+git clone git@github.com:ShmakovVA/test.git
+cd test/
+cp .git.example .env
+make run
+```
+
+
 ## Makefile
 
 ### Development
