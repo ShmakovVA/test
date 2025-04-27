@@ -3,6 +3,12 @@
 run:
 	docker-compose up --build
 
+rebuild: clean
+	docker-compose build --no-cache
+
+scratch: clean-all
+	docker-compose build --no-cache
+
 db-migrations:
 	SECRET_KEY=x poetry run litestar database make-migrations --autogenerate
 

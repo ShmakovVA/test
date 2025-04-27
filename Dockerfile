@@ -1,5 +1,5 @@
 # Use Python 3.12 slim image
-FROM python:3.12-slim
+FROM python:3.12-slim AS build
 
 # Set working directory
 WORKDIR /app
@@ -19,6 +19,9 @@ COPY pyproject.toml poetry.lock* ./
 RUN poetry config virtualenvs.create false \
     && poetry install --no-dev --no-interaction --no-ansi
 
+
+FROM build AS app
+
 # Create non-root user
 RUN adduser --disabled-password --gecos "" appuser \
     && chown -R appuser:appuser /app
@@ -33,4 +36,4 @@ USER appuser
 EXPOSE 8000
 
 # Run the application
-CMD ["poetry", "run", "litestar", "--app", "app.app:app", "run", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["litestar", "--app", "app.app:app", "run", "--host", "0.0.0.0", "--port", "8000"]
