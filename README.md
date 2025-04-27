@@ -57,11 +57,18 @@ backend/
 - Use `make format` to format code
 - Use `make type-check` to format code
 
-### Run
+### Run/Create Migrations
 
 - Use `make migrations` to autogenerate migrations
 - Use `make upgrade` to apply migrations on db
+
+### Run/Build compose
+
 - Use `make run` to run all services
+
+- Use `make rebuild` stop all and rebuild all
+- Use `make scratch` delete all (with volumes) and rebuild
+
 
 ## API Documentation
 
